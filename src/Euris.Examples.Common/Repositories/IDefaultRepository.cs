@@ -10,4 +10,6 @@ public interface IMovieRepository
     Task<List<Company>> GetCompaniesByMovieId(int movieId);
     Task<List<Country>> GetCountriesByMovieId(int movieId);
     Task<List<Genre>> GetGenresByMovieId(int movieId);
+
+    Task<MovieSearchResult> GetMoviesByFilter(MoviesSearchRequest request);
 }

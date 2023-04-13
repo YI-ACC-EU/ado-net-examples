@@ -1,6 +1,7 @@
 ﻿namespace Euris.Examples.Common.Models.Dto;
 
-public class MovieResponseDto
+
+public class MovieDtoCommon
 {
     public string Title { get; set; }
     public long? Budget { get; set; }
@@ -14,6 +15,20 @@ public class MovieResponseDto
     public decimal? VoteAverage { get; set; }
     public int? VoteCount { get; set; }
     public string? HomePage { get; set; }
+}
+
+public class MovieSearchResponseDto
+{
+    public List<MovieDtoCommon> Movies { get; set; }
+    public int TotalResults { get; set; }
+    public int TotalPages { get; set; }
+    public int CurrentPage { get; set; }
+}
+
+
+public class DefaultMovieResponseDtoCommon : MovieDtoCommon
+{
+
     public List<ActorDto>? Actors { get; set; }
     public List<CrewMemberDto>? Crew { get; set; }
     public List<string>? Companies { get; set; }

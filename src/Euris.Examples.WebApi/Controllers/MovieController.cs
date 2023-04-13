@@ -18,12 +18,20 @@ public class MovieController : ControllerBase
     }
 
     [HttpGet("{Id}")]
-    [ProducesResponseType(typeof(MovieResponseDto), 200)]
+    [ProducesResponseType(typeof(DefaultMovieResponseDtoCommon), 200)]
     [ProducesResponseType(typeof(string[]), 400)]
     [ProducesResponseType(typeof(string[]), 404)]
     [ProducesResponseType(typeof(string[]), 500)]
     public async Task<IActionResult> Get([FromRoute] MovieByIdRequest request)
         => Map(await _movieService.GetMovieById(request));
+
+    [HttpGet("find")]
+    [ProducesResponseType(typeof(MovieSearchResponseDto), 200)]
+    [ProducesResponseType(typeof(string[]), 400)]
+    [ProducesResponseType(typeof(string[]), 404)]
+    [ProducesResponseType(typeof(string[]), 500)]
+    public async Task<IActionResult> Filter([FromQuery] MoviesByFilterRequest request)
+        => Map( await _movieService.GetMoviesListByFilter(request));
     
 
     private IActionResult Map<T>(DefaultResponse<T> response)

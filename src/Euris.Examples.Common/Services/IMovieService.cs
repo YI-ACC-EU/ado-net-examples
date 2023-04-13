@@ -6,5 +6,6 @@ namespace Euris.Examples.Common.Services;
 
 public interface IMovieService
 {
-    public Task<DefaultResponse<MovieResponseDto>> GetMovieById(MovieByIdRequest request);
+    public Task<DefaultResponse<DefaultMovieResponseDtoCommon>> GetMovieById(MovieByIdRequest request);
+    public Task<DefaultResponse<MovieSearchResponseDto>> GetMoviesListByFilter(MoviesByFilterRequest request);
 }

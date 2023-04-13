@@ -5,7 +5,7 @@ public static class MovieQueries
     public static string GetMovieQuery() => $@"
   SELECT { string.Join(',', MovieFields.AllMovieFields) }
   FROM [movies].[dbo].[movie] M
-  WHERE M.[movie_id] = @Id; 
+  WHERE M.[movie_id] = @Id'; 
 ";
 
     public static string GetGenreByMovieIdQuery() => @"
@@ -44,6 +44,19 @@ SELECT c.country_id as Id, c.country_iso_code as IsoCode, c.country_name as [Nam
 INNER JOIN [dbo].[country] c ON pc.country_id = c.country_id
 WHERE pc.movie_id = @MovieId;
 ";
+
+    public static string MovieSearchQueryBase() => $@"
+SELECT *, COUNT(*) over() as TotalCount FROM (
+SELECT DISTINCT { string.Join(',', MovieFields.AllMovieFields) }
+  FROM [movies].[dbo].[movie] m
+   /****JOIN******/
+   /****WHERE*****/  
+  ) as T
+  ORDER BY title 
+  OFFSET @Offest ROWS
+  FETCH NEXT @Take ROWS ONLY;
+";
+
 }
 
 public static class MovieFields

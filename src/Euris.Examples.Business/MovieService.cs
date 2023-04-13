@@ -20,9 +20,9 @@ public class MovieService : IMovieService
         _movieRepository = movieRepository;
     }
 
-    public async Task<DefaultResponse<MovieResponseDto>> GetMovieById(MovieByIdRequest? request)
+    public async Task<DefaultResponse<DefaultMovieResponseDtoCommon>> GetMovieById(MovieByIdRequest? request)
     {
-        var response = new DefaultResponse<MovieResponseDto>()
+        var response = new DefaultResponse<DefaultMovieResponseDtoCommon>()
         {
             StatusCode = 400
         };
@@ -54,6 +54,27 @@ public class MovieService : IMovieService
             response.Errors = new[] {e.Message};
 
         }
+        return response;
+    }
+
+    public async Task<DefaultResponse<MovieSearchResponseDto>> GetMoviesListByFilter(MoviesByFilterRequest request)
+    {
+        var response = new DefaultResponse<MovieSearchResponseDto>()
+        {
+            StatusCode = 400
+        };
+        try
+        {
+           var result = await _movieRepository.GetMoviesByFilter(request.ToMoviesByFilterRequest());
+           response.StatusCode = 200;
+           response.Data = result.ToResponseDto();
+        }
+        catch (Exception e)
+        {
+            _logger.Error(e, "Can't get filtered movies");
+            response.StatusCode = 500;
+        }
+
         return response;
     }
 }
