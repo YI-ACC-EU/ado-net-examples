@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "50_UnitTests", "50_UnitTest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "60_IntegrationTests", "60_IntegrationTests", "{E7BE7AF5-766B-4575-904D-52CE32810874}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Euris.Examples.Tests", "tests\Euris.Examples.Tests\Euris.Examples.Tests.csproj", "{A3EA645B-FDF2-4D5D-95C6-9BB97EBC1A7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Euris.Examples.Tests", "tests\Euris.Examples.Tests\Euris.Examples.Tests.csproj", "{A3EA645B-FDF2-4D5D-95C6-9BB97EBC1A7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
